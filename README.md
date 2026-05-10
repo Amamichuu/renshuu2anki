@@ -35,9 +35,9 @@ Please refer to `LICENSE` for the current licensing terms and usage permissions.
 
 ## 🚀 Installation
 
+From a checked-out copy of this repository, run:
+
 ```bash
-git clone https://github.com/your-username/renshuu2anki.git
-cd renshuu2anki
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
