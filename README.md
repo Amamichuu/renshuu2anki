@@ -6,9 +6,8 @@
 
 ## 📄 License
 
-This repository does not include an explicit license file.
-Until a license is added, no permission is granted to copy, modify, or redistribute this project except as otherwise allowed by law.
-If you want to use this code beyond viewing it on GitHub, please contact the repository owner for permission.
+This repository includes a `LICENSE` file.
+Please refer to `LICENSE` for the current licensing terms and usage permissions.
 
 ---
 
