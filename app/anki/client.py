@@ -28,7 +28,7 @@ class AnkiClient:
             response.raise_for_status()
         except requests.exceptions.Timeout as exc:
             raise RuntimeError(
-                f"Timed out الاتصال بـ AnkiConnect at {self.url} while performing '{action}'. "
+                f"Timed out connecting to AnkiConnect at {self.url} while performing '{action}'. "
                 "Make sure Anki is running and the AnkiConnect add-on is installed and enabled."
             ) from exc
         except requests.exceptions.ConnectionError as exc:
