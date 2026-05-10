@@ -37,7 +37,10 @@ class AnkiClient:
             "query": f"RenshuuID:{renshuu_id}"
         })
 
-        return len(result.get("result", [])) > 0
+        if result.get("error"):
+            return False
+
+        return len(result.get("result") or []) > 0
 
     def add_card(self, sentence):
         # Skip if already exists (deduplication layer)
