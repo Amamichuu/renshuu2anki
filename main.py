@@ -15,10 +15,19 @@ def main():
     results = service.sync_list(RENSHUU_LIST_ID)
 
     for sentence, result in results:
-        if result and not result.get("error"):
-            logger.info(f"Added: {sentence}")
-        else:
+
+        # Case 1: duplicate (skipped intentionally)
+        if result is None:
+            logger.info(f"Skipped duplicate: {sentence}")
+            continue
+
+        # Case 2: AnkiConnect error
+        if result.get("error"):
             logger.warning(f"Failed: {sentence} -> {result}")
+            continue
+
+        # Case 3: success
+        logger.info(f"Added: {sentence}")
 
     logger.info("Sync finished.")
 

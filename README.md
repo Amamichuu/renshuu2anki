@@ -4,6 +4,14 @@
 
 ---
 
+## 📄 License
+
+This repository does not include an explicit license file.
+Until a license is added, no permission is granted to copy, modify, or redistribute this project except as otherwise allowed by law.
+If you want to use this code beyond viewing it on GitHub, please contact the repository owner for permission.
+
+---
+
 ## ✨ Features
 
 - Fetch sentence lists from the Renshuu API
@@ -78,6 +86,20 @@ Without it, duplicate cards will be created and syncs will not be idempotent.
 | `Front` | Japanese sentence |
 | `Back` | English translation |
 | `RenshuuID` | Unique sentence ID |
+
+### Deck name
+
+By default, cards are added to a deck named `🇯🇵`. You can change this by setting the `ANKI_DECK_NAME` environment variable in your `.env` file:
+
+```env
+ANKI_DECK_NAME=My Japanese Deck
+```
+
+Or edit it directly in `app/anki/client.py`:
+
+```python
+self.deck_name = os.getenv("ANKI_DECK_NAME", "🇯🇵")
+```
 
 ---
 
