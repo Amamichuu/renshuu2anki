@@ -23,7 +23,24 @@ class AnkiClient:
             "params": params or {}
         }
 
-        response = requests.post(self.url, json=payload)
+        try:
+            response = requests.post(self.url, json=payload, timeout=5)
+            response.raise_for_status()
+        except requests.exceptions.Timeout as exc:
+            raise RuntimeError(
+                f"Timed out الاتصال بـ AnkiConnect at {self.url} while performing '{action}'. "
+                "Make sure Anki is running and the AnkiConnect add-on is installed and enabled."
+            ) from exc
+        except requests.exceptions.ConnectionError as exc:
+            raise RuntimeError(
+                f"Could not connect to AnkiConnect at {self.url} while performing '{action}'. "
+                "Make sure Anki is running and the AnkiConnect add-on is installed and enabled."
+            ) from exc
+        except requests.exceptions.HTTPError as exc:
+            raise RuntimeError(
+                f"AnkiConnect returned HTTP {response.status_code} for '{action}' at {self.url}."
+            ) from exc
+
         return response.json()
 
     def _ensure_deck_exists(self):
